@@ -156,7 +156,7 @@ plt.plot(
 plt.title("Predicted vs Actual (Full Model)")
 plt.xlabel("Predicted G3")
 plt.ylabel("Actual G3")
-plt.savefig("assignments_02/outputs/predicted_vs_actual_full_model.png", bbox_inches="tight")
+plt.savefig("assignments_02/outputs/predicted_vs_actual.png", bbox_inches="tight")
 plt.close()
 
 # A point above the diagonal means the actual grade is higher than predicted.
@@ -170,11 +170,42 @@ sorted_coefs = sorted(zip(feature_cols, model.coef_), key=lambda x: x[1])
 print("Most negative coefficients:", sorted_coefs[:2])
 print("Most positive coefficients:", sorted_coefs[-2:])
 
-# Plain-language summary:
-# RMSE tells the typical prediction error in grade points on a 0-20 scale.
-# R^2 tells how much variation in final grade the model explains.
-# For production, I would keep features with stronger, more interpretable signals and drop weak/noisy ones.
+# Coefficient interpretation:
+# The top two positive coefficients are internet and higher.
+# In this model, internet access has the strongest positive coefficient, about +0.834.
+# This means students with internet access are predicted to have higher final math grades,
+# assuming the other features stay the same.
+# The second strongest positive coefficient is higher, about +0.610.
+# This means students who plan to pursue higher education are also predicted to have
+# higher final math grades, assuming the other features stay the same.
+#
+# The bottom two negative coefficients are schoolsup and failures.
+# The most negative coefficient is schoolsup, about -2.062.
+# This means students receiving extra school support are predicted to have lower final
+# math grades, assuming the other features stay the same. This does not necessarily mean
+# school support causes lower grades; it may mean students receiving support were already struggling.
+# The second most negative coefficient is failures, about -1.145.
+# This means students with more past class failures are predicted to have lower final grades.
 
+# Plain-language summary:
+# After filtering out students with G3 equal to 0, the filtered dataset had 357 rows and 18 columns.
+# The test set had 72 rows, meaning the model was evaluated on 72 student records that it did not
+# see during training.
+#
+# The best full model had an RMSE of about 2.86.
+# Since final grades are on a 0-20 scale, this means the model's typical prediction error is
+# about 2.86 grade points. For example, if the model predicts a final grade of 12, the actual
+# grade might commonly be around 9.14 to 14.86.
+#
+# The best full model had a test R^2 score of about 0.154.
+# In plain English, this means the model explains about 15.4% of the variation in students'
+# final math grades. This is better than the baseline model, but it also shows that many
+# important factors are still missing from the model.
+#
+# One result that surprised me was that adding G1 increased the test R^2 to about 0.749.
+# This surprised me because the model became much stronger after adding only one feature.
+# It makes sense because G1 is the student's first-period grade, so it is already a strong
+# signal of how the student may perform on the final grade G3.
 print("\n=== NEGLECTED FEATURE: G1 ===")
 feature_cols_g1 = feature_cols + ["G1"]
 X_g1 = df_clean[feature_cols_g1].values
