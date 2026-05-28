@@ -2,8 +2,8 @@
 # Run this in Azure Cloud Shell after completing the Cost Analysis above.
 
 # Fill in the hourly rates from your Azure Pricing Calculator estimates.
-rate_a = 0.0    # Standard_B1s hourly rate for Scenario A
-rate_b = 0.0    # Standard_NC6s_v3 hourly rate for Scenario B, VM only
+rate_a = 0.10    # Standard_B1s hourly rate for Scenario A
+rate_b = 3.06    # Standard_NC6s_v3 hourly rate for Scenario B, VM only
 
 hours_a = 160   # Scenario A: 8h/day, 5 days/week, about 4 weeks
 hours_b = 730   # Scenario B: always on for full month
