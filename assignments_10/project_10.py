@@ -2,8 +2,8 @@
 Week 10 Project: LLM Transform Pipeline
 
 Video link:
-PASTE_YOUR_VIDEO_LINK_HERE
-
+https://drive.google.com/file/d/1_InRAuPbaTGck_-thAH-mgE5LzBCx4Ge/view?usp=sharing
+https://drive.google.com/file/d/1wXoIm6TGB4-Xglvw9n6E8mTJPFPZo_Qq/view?usp=sharing
 Reflection:
 Classifying weather conditions for outdoor running can be done with an LLM, but it may not be the best use of an LLM.
 Because the input only has temperature and precipitation, deterministic rules could probably do the job faster, cheaper, and more consistently.
