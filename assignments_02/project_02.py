@@ -167,6 +167,9 @@ print("Filtered dataset size:", df_clean.shape)
 print("Test set size:", X_test.shape[0])
 
 sorted_coefs = sorted(zip(feature_cols, model.coef_), key=lambda x: x[1])
+print("\nSorted coefficients from most negative to most positive:")
+for name, coef in sorted_coefs:
+    print(f"{name:12s}: {coef:+.3f}")
 print("Most negative coefficients:", sorted_coefs[:2])
 print("Most positive coefficients:", sorted_coefs[-2:])
 
